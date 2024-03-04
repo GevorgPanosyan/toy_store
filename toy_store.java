@@ -3,14 +3,14 @@ import java.io.IOException;
 import java.util.PriorityQueue;
 
 public class ToyStore{
-    private static final int TOTAL_GET_CALLS =10;
+    private static final int TOTAL_GET_CALLS = 10;
     private PriorityQueue<Toy>queue;
 
     public static void main(String[] args){
         ToyStore toyStore = new ToyStore();
         toyStore.initializeQueue();
         toyStore.executeGetCalls();
-        toyStore.writeResults To File();
+        toyStore.writeResultsToFile();
     }
 
     // Initialize the queue with Toy objects
@@ -80,17 +80,36 @@ public class ToyStore{
     }
   }
   
-  private static final int TOTAL_GET_CALLS = 10;
-  private PriorityQueue<Toy>queue;
+  //Toy class with id, name,and weight fields
+    private class Toy implements Comparable<Toy>{
+        private String id;
+        private String name;
+        private int weight;
 
-  public static void main(String[] args){
-    ToyStore toyStore = new ToyStore();
-    toyStore.initializeQueue();
-    toyStore.executeGetCalls();
-    toyStore.writeResults To File();
-  }
+        public Toy(String id, String name,int weight){
+            this.id = id;
+            this.name = name;
+            this.weight = weight;
+        }
 
-  //Initialize the queue with Toy objects
-  private void initializeQueue(){
-    queue = new PriorityQueue<>();
+        public String getId(){
+            return id;
+        }
+
+        public String getName(){
+            return name;
+        }
+
+        public int getWeight(){
+            return weight;
+        }
+        @Override
+        public int compareTo(Toy otherToy){
+            return Integer.compare(this.weight, otherToy.getWeight());
+        }
+    }
+}
+
+        
+        
    
